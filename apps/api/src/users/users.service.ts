@@ -52,4 +52,41 @@ export class UsersService {
     await this.storage.deleteAllForUser(userId);
     await this.prisma.user.delete({ where: { id: userId } });
   }
+
+  /**
+   * Withdraws consent for health-data processing (Washington MHMDA) without
+   * deleting the account: purges every health-data table for this user plus
+   * their uploaded files, clears the health-adjacent User fields, and stamps
+   * the withdrawal. Login/email/name are untouched - the account still
+   * exists, it just has no pregnancy data until the user re-onboards (which
+   * re-grants consent).
+   */
+  async withdrawHealthDataConsent(userId: string, password: string): Promise<void> {
+    const user = await this.prisma.user.findUnique({ where: { id: userId } });
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+    if (!(await bcrypt.compare(password, user.passwordHash))) {
+      throw new UnauthorizedException('Incorrect password');
+    }
+
+    await this.storage.deleteAllForUser(userId);
+
+    await this.prisma.$transaction([
+      this.prisma.diaryEntry.deleteMany({ where: { userId } }),
+      this.prisma.milestonePhoto.deleteMany({ where: { userId } }),
+      this.prisma.appointment.deleteMany({ where: { userId } }),
+      this.prisma.exam.deleteMany({ where: { userId } }),
+      this.prisma.pregnancyProfile.deleteMany({ where: { userId } }),
+      this.prisma.user.update({
+        where: { id: userId },
+        data: {
+          heightCm: null,
+          prePregnancyWeightKg: null,
+          healthDataConsentAt: null,
+          healthDataConsentWithdrawnAt: new Date(),
+        },
+      }),
+    ]);
+  }
 }

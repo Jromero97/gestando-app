@@ -22,6 +22,8 @@ export default async function PrivacyPolicyPage() {
   const sharingBody = t.raw("sharing.body") as string[];
   const controllerBody = t.raw("controller.body") as string[];
   const rightsItems = t.raw("rights.items") as string[];
+  const usHealthCategories = t.raw("usHealthData.categories") as string[];
+  const usHealthThirdParties = t.raw("usHealthData.thirdParties") as string[];
 
   return (
     <div className="mx-auto w-full max-w-3xl px-6 py-16">
@@ -116,6 +118,43 @@ export default async function PrivacyPolicyPage() {
       <section className="mt-10">
         <h2 className="text-xl font-extrabold text-ink">{t("children.heading")}</h2>
         <p className="mt-3 text-muted">{t("children.body")}</p>
+      </section>
+
+      <section className="mt-10">
+        <h2 className="text-xl font-extrabold text-ink">{t("usHealthData.heading")}</h2>
+        <p className="mt-3 text-muted">{t("usHealthData.intro")}</p>
+
+        <h3 className="mt-6 font-extrabold text-ink">{t("usHealthData.categoriesHeading")}</h3>
+        <ul className="mt-2 list-disc space-y-1 pl-5 text-muted">
+          {usHealthCategories.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+
+        <h3 className="mt-6 font-extrabold text-ink">{t("usHealthData.sourcesHeading")}</h3>
+        <p className="mt-2 text-muted">{t("usHealthData.sources")}</p>
+
+        <h3 className="mt-6 font-extrabold text-ink">{t("usHealthData.purposesHeading")}</h3>
+        <ul className="mt-2 list-disc space-y-1 pl-5 text-muted">
+          {purposeItems.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+
+        <h3 className="mt-6 font-extrabold text-ink">{t("usHealthData.sharingHeading")}</h3>
+        <ul className="mt-2 list-disc space-y-1 pl-5 text-muted">
+          {usHealthThirdParties.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+        <p className="mt-3 font-semibold text-ink">{t("usHealthData.noSaleNoAds")}</p>
+
+        <h3 className="mt-6 font-extrabold text-ink">{t("usHealthData.consentHeading")}</h3>
+        <p className="mt-2 text-muted">{t("usHealthData.consentCollection")}</p>
+        <p className="mt-2 text-muted">{t("usHealthData.consentSharing")}</p>
+
+        <p className="mt-6 text-muted">{t("usHealthData.noGeofencing")}</p>
+        <p className="mt-3 text-muted">{t("usHealthData.deletionRights")}</p>
       </section>
 
       <section className="mt-10">

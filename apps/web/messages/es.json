@@ -57,7 +57,7 @@
     "intro": "GestandoApp (\"nosotros\") es una aplicación para acompañar el seguimiento del embarazo. Esta política explica qué datos recolectamos, para qué los usamos, con quién los compartimos y qué derechos tenés sobre ellos.",
     "applicableLaw": {
       "heading": "Marco legal aplicable",
-      "body": "Esta política está redactada para cumplir con el Reglamento General de Protección de Datos de la Unión Europea (RGPD), aplicable si usás la app desde un país de la UE, y con la Ley N.° 787, Ley de Protección de Datos Personales de Nicaragua, país donde está radicado el responsable del tratamiento. [Verificar con asesoría legal en Nicaragua: no hay suficiente documentación pública actualizada sobre la aplicación práctica de esta ley como para redactar esta sección con total certeza.]"
+      "body": "Esta política está redactada para cumplir con el Reglamento General de Protección de Datos de la Unión Europea (RGPD), aplicable si usás la app desde un país de la UE, y con la Ley N.° 787, Ley de Protección de Datos Personales de Nicaragua, país donde está radicado el responsable del tratamiento. [Verificar con asesoría legal en Nicaragua: no hay suficiente documentación pública actualizada sobre la aplicación práctica de esta ley como para redactar esta sección con total certeza.] Como la aplicación también está disponible en Estados Unidos a través de Google Play, la sección 9 de esta política incorpora además las divulgaciones adicionales que exige la My Health My Data Act del estado de Washington para datos de salud del consumidor."
     },
     "controller": {
       "heading": "1. Responsable del tratamiento",
@@ -86,13 +86,13 @@
         "Para dar soporte cuando nos contactás",
         "Para mejorar la aplicación de forma agregada y anónima"
       ],
-      "legalBasis": "La base legal para procesar tus datos de salud es tu consentimiento explícito, otorgado al crear tu cuenta. Podés retirarlo en cualquier momento eliminando tu cuenta."
+      "legalBasis": "La base legal para procesar tus datos de salud es tu consentimiento explícito, otorgado al crear tu cuenta mediante un casillero específico para datos de salud, separado de la aceptación general de esta política. Podés retirar ese consentimiento en cualquier momento sin eliminar tu cuenta: hacerlo borra tu embarazo, citas, exámenes, diario y fotos de progreso, pero tu cuenta y tu inicio de sesión se mantienen activos. Podés hacerlo vos misma desde Perfil → Zona de peligro → \"Retirar consentimiento de datos de salud\", o escribiéndonos a contact@jromeroc.dev. Si preferís, también podés eliminar tu cuenta por completo — ver \"Tus derechos\" más abajo."
     },
     "sharing": {
       "heading": "4. Con quién compartimos tus datos",
       "body": [
         "No vendemos tus datos ni los usamos con fines publicitarios.",
-        "Usamos Supabase (base de datos y almacenamiento de archivos) como encargado del tratamiento para operar la aplicación. Tus datos se alojan en la región Este de EE. UU. (Ohio). Supabase incorpora las Cláusulas Contractuales Tipo de la UE en su Acuerdo de Encargado de Tratamiento para amparar esta transferencia internacional de datos si sos usuaria en la Unión Europea. [Confirmar que el Acuerdo de Encargado de Tratamiento con Supabase esté efectivamente aceptado en la cuenta del proyecto.]",
+        "Usamos Supabase (base de datos y almacenamiento de archivos) como encargado del tratamiento para operar la aplicación. Tus datos se alojan en la región Este de EE. UU. (Ohio). Supabase incorpora las Cláusulas Contractuales Tipo de la UE en su Acuerdo de Encargado de Tratamiento (DPA) para amparar esta transferencia internacional de datos si sos usuaria en la Unión Europea. Este DPA forma parte de los Términos de Servicio estándar de Supabase, así que se aplica automáticamente a nuestra cuenta sin necesidad de un paso de aceptación aparte.",
         "Podríamos compartir datos si la ley nos obliga a hacerlo."
       ]
     },
@@ -120,10 +120,38 @@
     },
     "children": {
       "heading": "8. Menores de edad",
-      "body": "GestandoApp no está dirigida a menores de edad."
+      "body": "GestandoApp está pensada para personas mayores de 18 años. No recolectamos a sabiendas datos de personas menores de esa edad. Si nos enteramos de que una cuenta pertenece a alguien menor de 18 años, vamos a eliminar esa cuenta y todos los datos de salud asociados."
+    },
+    "usHealthData": {
+      "heading": "9. Datos de salud del consumidor (Washington, EE. UU.)",
+      "intro": "Si usás GestandoApp desde el estado de Washington, Estados Unidos, esta sección te da información adicional requerida por la My Health My Data Act (MHMDA) de ese estado sobre los \"datos de salud del consumidor\" que recolectamos.",
+      "categoriesHeading": "Categorías de datos de salud del consumidor que recolectamos",
+      "categories": [
+        "Estado del embarazo y fecha probable de parto",
+        "Información menstrual y reproductiva (fecha de última menstruación)",
+        "Condiciones médicas que registrás (por ejemplo anemia, diabetes gestacional, hipertensión)",
+        "Signos vitales: presión arterial, altura uterina, frecuencia cardíaca fetal, peso estimado del bebé",
+        "Estado de ánimo, síntomas, peso y movimientos del bebé que registrás en el diario",
+        "Fotos y notas de audio que subís, y el texto que escribís en el diario",
+        "Fotos de evolución del embarazo y circunferencia abdominal"
+      ],
+      "sourcesHeading": "De dónde vienen estos datos",
+      "sources": "Todos estos datos los ingresás vos directamente en la aplicación. No recolectamos datos de salud del consumidor a través de cookies, rastreadores publicitarios, ni los compramos a data brokers de ningún tipo.",
+      "purposesHeading": "Para qué los usamos",
+      "sharingHeading": "Con quién compartimos estos datos",
+      "thirdParties": [
+        "Supabase (alojamiento de la base de datos y archivos), como encargado del tratamiento, únicamente para poder operar la aplicación.",
+        "El servicio de notificaciones push de Expo y, a través de él, Apple y Google: cuando activás recordatorios de citas o exámenes, el título que vos escribiste (por ejemplo \"Control mensual\") viaja como contenido de la notificación push para poder entregártela en tu dispositivo. Ninguno de los dos guarda ese contenido de forma permanente, solo lo retransmiten."
+      ],
+      "noSaleNoAds": "No vendemos tus datos de salud del consumidor, y no los compartimos con fines de publicidad dirigida.",
+      "consentHeading": "Tu consentimiento",
+      "consentCollection": "Al crear tu cuenta te pedimos un consentimiento explícito y separado (distinto de aceptar esta política de privacidad) específicamente para procesar tus datos de salud, mediante un casillero propio en el formulario de registro.",
+      "consentSharing": "Hoy no compartimos tus datos de salud del consumidor con ningún tercero más allá de lo necesario para operar el servicio (ver arriba). Si en el futuro quisiéramos compartirlos con algún otro tercero, te vamos a pedir un consentimiento explícito adicional antes de hacerlo.",
+      "noGeofencing": "GestandoApp no usa geolocalización ni geofencing (zonas geográficas delimitadas) alrededor de centros de salud ni de ningún otro lugar.",
+      "deletionRights": "Podés pedir la eliminación de tus datos de salud del consumidor en cualquier momento (ver \"Retirar tu consentimiento de datos de salud\" en la sección 3). Ese derecho de eliminación se extiende a Supabase y a cualquier otro encargado del tratamiento que use la aplicación, no solo a nuestros propios sistemas."
     },
     "changes": {
-      "heading": "9. Cambios a esta política",
+      "heading": "10. Cambios a esta política",
       "body": "Si hacemos cambios importantes a esta política, te lo vamos a notificar dentro de la aplicación antes de que entren en vigencia."
     }
   }

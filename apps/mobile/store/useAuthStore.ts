@@ -7,7 +7,7 @@ import { getToken, setToken, deleteToken } from '../services/tokenStorage';
 import { setAuthToken } from '../services/api';
 import { getApiErrorMessage } from '../services/apiError';
 import { login as loginRequest, register as registerRequest } from '../services/authService';
-import { fetchMe, deleteMe } from '../services/usersService';
+import { fetchMe, deleteMe, withdrawHealthDataConsent as withdrawHealthDataConsentRequest } from '../services/usersService';
 import { fetchProfile } from '../services/profileService';
 import { registerPushToken, removePushToken } from '../services/notificationsService';
 import { decodeJwtPayload } from '../utils/jwt';
@@ -58,9 +58,15 @@ interface AuthState {
   error: string | null;
   hydrate: () => Promise<void>;
   login: (email: string, password: string, rememberMe?: boolean) => Promise<void>;
-  register: (email: string, password: string, acceptedPrivacyPolicy: boolean) => Promise<void>;
+  register: (
+    email: string,
+    password: string,
+    acceptedPrivacyPolicy: boolean,
+    consentedToHealthData: boolean,
+  ) => Promise<void>;
   logout: () => Promise<void>;
   deleteAccount: (password: string) => Promise<void>;
+  withdrawHealthDataConsent: (password: string) => Promise<void>;
   refreshOnboardingStatus: () => Promise<void>;
 }
 
@@ -111,10 +117,10 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     }
   },
 
-  register: async (email, password, acceptedPrivacyPolicy) => {
+  register: async (email, password, acceptedPrivacyPolicy, consentedToHealthData) => {
     set({ error: null });
     try {
-      const token = await registerRequest(email, password, acceptedPrivacyPolicy);
+      const token = await registerRequest(email, password, acceptedPrivacyPolicy, consentedToHealthData);
       await setToken(TOKEN_KEY, token);
       setAuthToken(token);
       set({ token, email: emailFromToken(token), onboardingStatus: 'needs-general' });
@@ -146,6 +152,14 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     setAuthToken(null);
     cachedPushToken = null;
     set({ token: null, email: null, firstName: null, lastName: null, onboardingStatus: 'unknown' });
+  },
+
+  withdrawHealthDataConsent: async (password) => {
+    await withdrawHealthDataConsentRequest(password);
+    // Account/login stay intact - just re-evaluate onboarding status now
+    // that the pregnancy profile (and everything else) is gone. That
+    // naturally routes back to onboarding, same as a brand-new account.
+    await get().refreshOnboardingStatus();
   },
 
   refreshOnboardingStatus: async () => {

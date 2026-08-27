@@ -27,6 +27,7 @@ export class AuthService {
           passwordHash,
           privacyPolicyAcceptedAt: new Date(),
           privacyPolicyVersion: CURRENT_PRIVACY_POLICY_VERSION,
+          healthDataConsentAt: new Date(),
         },
       });
     } catch (err) {

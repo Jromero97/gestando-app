@@ -22,3 +22,7 @@ export async function updateMe(input: UpdateMeInput): Promise<UserProfile> {
 export async function deleteMe(password: string): Promise<void> {
   await api.delete('/users/me', { data: { password } });
 }
+
+export async function withdrawHealthDataConsent(password: string): Promise<void> {
+  await api.delete('/users/me/health-data', { data: { password } });
+}

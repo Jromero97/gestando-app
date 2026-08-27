@@ -49,7 +49,8 @@
       "strong": "Strong"
     },
     "privacyConsentPrefix": "I accept the ",
-    "privacyConsentLink": "privacy policy"
+    "privacyConsentLink": "privacy policy",
+    "healthDataConsent": "I consent to the processing of my health data (pregnancy, appointments, vitals, journal, and progress) to provide the service."
   },
   "onboarding": {
     "dating": {
@@ -187,6 +188,9 @@
       "savePregnancy": "Save pregnancy",
       "logout": "Log out",
       "dangerZoneTitle": "Danger zone",
+      "withdrawHealthData": "Withdraw health data consent",
+      "withdrawHealthDataConfirm": "This deletes your pregnancy, appointments, exams, journal, and progress photos, but your account and login stay active. You can fill in your pregnancy details again anytime. Enter your password to confirm.",
+      "withdrawHealthDataButton": "Withdraw consent",
       "deleteAccount": "Delete my account",
       "deleteAccountConfirm": "This can't be undone. Your account, journal, appointments, and photos will be permanently deleted. Enter your password to confirm.",
       "deleteAccountPasswordPlaceholder": "Your password",

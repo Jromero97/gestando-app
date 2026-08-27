@@ -57,7 +57,7 @@
     "intro": "GestandoApp (\"we\") is an app for tracking pregnancy. This policy explains what data we collect, what we use it for, who we share it with, and what rights you have over it.",
     "applicableLaw": {
       "heading": "Applicable law",
-      "body": "This policy is written to align with the EU General Data Protection Regulation (GDPR), which applies if you use the app from an EU country, and with Law No. 787, Nicaragua's Personal Data Protection Law, the country where the data controller is based. [To verify with legal counsel in Nicaragua: there isn't enough up-to-date public documentation on how this law is applied in practice to write this section with full confidence.]"
+      "body": "This policy is written to align with the EU General Data Protection Regulation (GDPR), which applies if you use the app from an EU country, and with Law No. 787, Nicaragua's Personal Data Protection Law, the country where the data controller is based. [To verify with legal counsel in Nicaragua: there isn't enough up-to-date public documentation on how this law is applied in practice to write this section with full confidence.] Since the app is also available in the United States through Google Play, section 9 of this policy adds the further disclosures required by Washington State's My Health My Data Act for consumer health data."
     },
     "controller": {
       "heading": "1. Data controller",
@@ -86,13 +86,13 @@
         "To provide support when you contact us",
         "To improve the app in aggregate, anonymized form"
       ],
-      "legalBasis": "The legal basis for processing your health data is your explicit consent, given when you create your account. You can withdraw it at any time by deleting your account."
+      "legalBasis": "The legal basis for processing your health data is your explicit consent, given when you create your account through a dedicated health-data checkbox, separate from accepting this policy in general. You can withdraw that consent at any time without deleting your account: doing so erases your pregnancy, appointments, exams, journal, and progress photos, but your account and login stay active. You can do this yourself from Profile → Danger zone → \"Withdraw health data consent\", or by emailing us at contact@jromeroc.dev. If you'd rather, you can also delete your account entirely — see \"Your rights\" below."
     },
     "sharing": {
       "heading": "4. Who we share your data with",
       "body": [
         "We don't sell your data or use it for advertising.",
-        "We use Supabase (database and file storage) as a data processor to run the app. Your data is hosted in the US East (Ohio) region. Supabase incorporates the EU Standard Contractual Clauses into its Data Processing Addendum to cover this international data transfer if you're a user in the European Union. [To confirm: that the Data Processing Addendum with Supabase is actually accepted on the project account.]",
+        "We use Supabase (database and file storage) as a data processor to run the app. Your data is hosted in the US East (Ohio) region. Supabase incorporates the EU Standard Contractual Clauses into its Data Processing Addendum (DPA) to cover this international data transfer if you're a user in the European Union. This DPA is part of Supabase's standard Terms of Service, so it applies automatically to our account with no separate acceptance step.",
         "We may share data if required to by law."
       ]
     },
@@ -120,10 +120,38 @@
     },
     "children": {
       "heading": "8. Children",
-      "body": "GestandoApp is not directed at minors."
+      "body": "GestandoApp is meant for people 18 and older. We don't knowingly collect data from anyone younger than that. If we learn that an account belongs to someone under 18, we'll delete that account and all associated health data."
+    },
+    "usHealthData": {
+      "heading": "9. Consumer health data (Washington, USA)",
+      "intro": "If you use GestandoApp from Washington State, USA, this section gives you additional information required by that state's My Health My Data Act (MHMDA) about the \"consumer health data\" we collect.",
+      "categoriesHeading": "Categories of consumer health data we collect",
+      "categories": [
+        "Pregnancy status and estimated due date",
+        "Menstrual and reproductive information (last menstrual period date)",
+        "Medical conditions you record (e.g. anemia, gestational diabetes, hypertension)",
+        "Vitals: blood pressure, uterine height, fetal heart rate, estimated baby weight",
+        "Mood, symptoms, weight, and baby movements you log in the journal",
+        "Photos and voice notes you upload, and text you write in the journal",
+        "Pregnancy-progress photos and belly circumference"
+      ],
+      "sourcesHeading": "Where this data comes from",
+      "sources": "You enter all of this data directly into the app yourself. We don't collect consumer health data through cookies, advertising trackers, or purchase it from data brokers of any kind.",
+      "purposesHeading": "What we use it for",
+      "sharingHeading": "Who we share this data with",
+      "thirdParties": [
+        "Supabase (database and file hosting), as a data processor, solely to operate the app.",
+        "Expo's push notification service and, through it, Apple and Google: when you turn on appointment/exam reminders, the title you wrote (e.g. \"Monthly checkup\") travels as the push notification's content so it can be delivered to your device. Neither of them retains that content permanently, they just relay it."
+      ],
+      "noSaleNoAds": "We do not sell your consumer health data, and we do not share it for targeted advertising.",
+      "consentHeading": "Your consent",
+      "consentCollection": "When you create your account, we ask for an explicit, separate consent (distinct from accepting this privacy policy) specifically for processing your health data, through its own checkbox on the sign-up form.",
+      "consentSharing": "Today we don't share your consumer health data with any third party beyond what's needed to run the service (see above). If we ever wanted to share it with any other third party, we'd ask for your explicit, additional consent before doing so.",
+      "noGeofencing": "GestandoApp does not use geolocation or geofencing (drawing a boundary around a physical location) around healthcare facilities or any other place.",
+      "deletionRights": "You can request deletion of your consumer health data at any time (see \"Withdraw your health data consent\" in section 3). That deletion right extends to Supabase and any other processor the app uses, not just our own systems."
     },
     "changes": {
-      "heading": "9. Changes to this policy",
+      "heading": "10. Changes to this policy",
       "body": "If we make material changes to this policy, we'll notify you in the app before they take effect."
     }
   }

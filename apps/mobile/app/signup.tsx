@@ -30,19 +30,24 @@ export default function SignupScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [acceptedPrivacyPolicy, setAcceptedPrivacyPolicy] = useState(false);
+  const [consentedToHealthData, setConsentedToHealthData] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const strengthScore = passwordStrengthScore(password);
   const canContinue =
-    fullName.trim().length > 0 && email.trim().length > 0 && password.length >= 8 && acceptedPrivacyPolicy;
+    fullName.trim().length > 0 &&
+    email.trim().length > 0 &&
+    password.length >= 8 &&
+    acceptedPrivacyPolicy &&
+    consentedToHealthData;
 
   async function handleContinue() {
     if (!canContinue) return;
     setIsSubmitting(true);
     setError(null);
     try {
-      await register(email.trim(), password, acceptedPrivacyPolicy);
+      await register(email.trim(), password, acceptedPrivacyPolicy, consentedToHealthData);
 
       const [firstName, ...rest] = fullName.trim().split(/\s+/);
       await updateMe({ firstName, lastName: rest.join(' ') || undefined });
@@ -132,6 +137,22 @@ export default function SignupScreen() {
             {t('signup.privacyConsentLink')}
           </Text>
         </Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={() => setConsentedToHealthData((v) => !v)}
+        accessibilityRole="checkbox"
+        accessibilityState={{ checked: consentedToHealthData }}
+        accessibilityLabel={t('signup.healthDataConsent')}
+        hitSlop={{ top: 12, bottom: 12, left: 8, right: 8 }}
+        className="mt-3 flex-row items-center gap-2"
+      >
+        <View
+          className={`h-5 w-5 items-center justify-center rounded ${consentedToHealthData ? 'bg-primary' : 'border border-neutral-300'}`}
+        >
+          {consentedToHealthData && <Ionicons name="checkmark" size={14} color="#2B2A33" />}
+        </View>
+        <Text className="flex-1 font-semi text-xs text-muted">{t('signup.healthDataConsent')}</Text>
       </TouchableOpacity>
 
       <TouchableOpacity

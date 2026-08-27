@@ -9,6 +9,12 @@ describe('UsersService', () => {
   let service: UsersService;
   const prismaMock = {
     user: { findUnique: jest.fn(), update: jest.fn(), delete: jest.fn() },
+    diaryEntry: { deleteMany: jest.fn() },
+    milestonePhoto: { deleteMany: jest.fn() },
+    appointment: { deleteMany: jest.fn() },
+    exam: { deleteMany: jest.fn() },
+    pregnancyProfile: { deleteMany: jest.fn() },
+    $transaction: jest.fn((ops: unknown[]) => Promise.all(ops)),
   };
   const storageMock = { deleteAllForUser: jest.fn() };
 
@@ -77,6 +83,49 @@ describe('UsersService', () => {
 
       expect(storageMock.deleteAllForUser).toHaveBeenCalledWith('user-1');
       expect(prismaMock.user.delete).toHaveBeenCalledWith({ where: { id: 'user-1' } });
+    });
+  });
+
+  describe('withdrawHealthDataConsent', () => {
+    it('throws NotFoundException when the user does not exist', async () => {
+      prismaMock.user.findUnique.mockResolvedValue(null);
+
+      await expect(service.withdrawHealthDataConsent('user-1', 'whatever')).rejects.toThrow(NotFoundException);
+      expect(storageMock.deleteAllForUser).not.toHaveBeenCalled();
+    });
+
+    it('throws UnauthorizedException on a wrong password and deletes nothing', async () => {
+      const passwordHash = await bcrypt.hash('correct-password', 4);
+      prismaMock.user.findUnique.mockResolvedValue({ id: 'user-1', passwordHash });
+
+      await expect(service.withdrawHealthDataConsent('user-1', 'wrong-password')).rejects.toThrow(
+        UnauthorizedException,
+      );
+      expect(storageMock.deleteAllForUser).not.toHaveBeenCalled();
+      expect(prismaMock.$transaction).not.toHaveBeenCalled();
+    });
+
+    it('purges storage and every health-data table, and clears the health fields on User', async () => {
+      const passwordHash = await bcrypt.hash('correct-password', 4);
+      prismaMock.user.findUnique.mockResolvedValue({ id: 'user-1', passwordHash });
+
+      await service.withdrawHealthDataConsent('user-1', 'correct-password');
+
+      expect(storageMock.deleteAllForUser).toHaveBeenCalledWith('user-1');
+      expect(prismaMock.diaryEntry.deleteMany).toHaveBeenCalledWith({ where: { userId: 'user-1' } });
+      expect(prismaMock.milestonePhoto.deleteMany).toHaveBeenCalledWith({ where: { userId: 'user-1' } });
+      expect(prismaMock.appointment.deleteMany).toHaveBeenCalledWith({ where: { userId: 'user-1' } });
+      expect(prismaMock.exam.deleteMany).toHaveBeenCalledWith({ where: { userId: 'user-1' } });
+      expect(prismaMock.pregnancyProfile.deleteMany).toHaveBeenCalledWith({ where: { userId: 'user-1' } });
+      expect(prismaMock.user.update).toHaveBeenCalledWith({
+        where: { id: 'user-1' },
+        data: expect.objectContaining({
+          heightCm: null,
+          prePregnancyWeightKg: null,
+          healthDataConsentAt: null,
+          healthDataConsentWithdrawnAt: expect.any(Date),
+        }),
+      });
     });
   });
 });

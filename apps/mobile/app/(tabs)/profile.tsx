@@ -15,6 +15,7 @@ export default function ProfileScreen() {
   const { t, i18n } = useTranslation();
   const logout = useAuthStore((state) => state.logout);
   const deleteAccount = useAuthStore((state) => state.deleteAccount);
+  const withdrawHealthDataConsent = useAuthStore((state) => state.withdrawHealthDataConsent);
   const refreshOnboardingStatus = useAuthStore((state) => state.refreshOnboardingStatus);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -39,6 +40,34 @@ export default function ProfileScreen() {
       setDeleteError(getApiErrorMessage(err));
     } finally {
       setIsDeletingAccount(false);
+    }
+  }
+
+  const [showWithdrawConfirm, setShowWithdrawConfirm] = useState(false);
+  const [withdrawPassword, setWithdrawPassword] = useState('');
+  const [isWithdrawing, setIsWithdrawing] = useState(false);
+  const [withdrawError, setWithdrawError] = useState<string | null>(null);
+
+  function cancelWithdraw() {
+    setShowWithdrawConfirm(false);
+    setWithdrawPassword('');
+    setWithdrawError(null);
+  }
+
+  async function handleWithdrawHealthData() {
+    if (!withdrawPassword) return;
+    setIsWithdrawing(true);
+    setWithdrawError(null);
+    try {
+      // On success, refreshOnboardingStatus() (inside the store) flips
+      // onboardingStatus away from 'complete', so the root layout's
+      // Stack.Protected guard navigates out of (tabs) into onboarding
+      // almost immediately - no local "done" state needed here.
+      await withdrawHealthDataConsent(withdrawPassword);
+    } catch (err) {
+      setWithdrawError(getApiErrorMessage(err));
+    } finally {
+      setIsWithdrawing(false);
     }
   }
 
@@ -247,6 +276,46 @@ export default function ProfileScreen() {
 
       <View className="mt-10 rounded-2xl border border-red-200 bg-red-50 p-4">
         <Text className="font-semi text-sm text-red-600">{t('tabs.profile.dangerZoneTitle')}</Text>
+
+        {!showWithdrawConfirm ? (
+          <TouchableOpacity onPress={() => setShowWithdrawConfirm(true)} className="mt-2">
+            <Text className="font-semi text-sm text-red-500 underline">
+              {t('tabs.profile.withdrawHealthData')}
+            </Text>
+          </TouchableOpacity>
+        ) : (
+          <View className="mt-3">
+            <Text className="font-semi text-xs text-red-500">{t('tabs.profile.withdrawHealthDataConfirm')}</Text>
+            <TextInput
+              className="mt-2 rounded-xl border border-red-200 bg-white px-3 py-2 font-sans text-sm"
+              secureTextEntry
+              placeholder={t('tabs.profile.deleteAccountPasswordPlaceholder')}
+              accessibilityLabel={t('tabs.profile.deleteAccountPasswordPlaceholder')}
+              value={withdrawPassword}
+              onChangeText={setWithdrawPassword}
+            />
+            {withdrawError && <Text className="mt-1 font-semi text-xs text-red-600">{withdrawError}</Text>}
+            <View className="mt-3 flex-row gap-2">
+              <TouchableOpacity
+                onPress={cancelWithdraw}
+                className="flex-1 items-center rounded-xl border border-neutral-300 py-2.5"
+              >
+                <Text className="font-semi text-sm text-ink">{t('common.cancel')}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={handleWithdrawHealthData}
+                disabled={isWithdrawing || !withdrawPassword}
+                className="flex-1 items-center rounded-xl bg-red-600 py-2.5"
+              >
+                <Text className="font-semi text-sm text-white">
+                  {isWithdrawing ? t('common.oneMoment') : t('tabs.profile.withdrawHealthDataButton')}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        )}
+
+        <View className="mt-4 border-t border-red-100 pt-3">
         {!showDeleteConfirm ? (
           <TouchableOpacity onPress={() => setShowDeleteConfirm(true)} className="mt-2">
             <Text className="font-semi text-sm text-red-500 underline">{t('tabs.profile.deleteAccount')}</Text>
@@ -282,6 +351,7 @@ export default function ProfileScreen() {
             </View>
           </View>
         )}
+        </View>
       </View>
     </ScrollView>
     </SafeAreaView>

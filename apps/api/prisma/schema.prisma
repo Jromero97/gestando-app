@@ -61,6 +61,15 @@ model User {
   privacyPolicyAcceptedAt DateTime?
   privacyPolicyVersion    String?
 
+  /// Separate from privacyPolicyAcceptedAt - a distinct opt-in for processing
+  /// health data specifically (pregnancy, appointments, vitals, diary,
+  /// progress), per Washington's My Health My Data Act. Withdrawing this
+  /// (UsersService.withdrawHealthDataConsent) nulls it, wipes all health
+  /// data, and stamps healthDataConsentWithdrawnAt, without deleting the
+  /// account itself.
+  healthDataConsentAt          DateTime?
+  healthDataConsentWithdrawnAt DateTime?
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

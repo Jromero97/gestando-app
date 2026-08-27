@@ -49,7 +49,8 @@
       "strong": "Fuerte"
     },
     "privacyConsentPrefix": "Acepto la ",
-    "privacyConsentLink": "política de privacidad"
+    "privacyConsentLink": "política de privacidad",
+    "healthDataConsent": "Doy mi consentimiento para que se procesen mis datos de salud (embarazo, citas, signos vitales, diario y progreso) para brindarme el servicio."
   },
   "onboarding": {
     "dating": {
@@ -187,6 +188,9 @@
       "savePregnancy": "Guardar embarazo",
       "logout": "Cerrar sesión",
       "dangerZoneTitle": "Zona de peligro",
+      "withdrawHealthData": "Retirar consentimiento de datos de salud",
+      "withdrawHealthDataConfirm": "Esto elimina tu embarazo, citas, exámenes, diario y fotos de progreso, pero tu cuenta y tu inicio de sesión se mantienen. Podés volver a completar tus datos de embarazo cuando quieras. Ingresá tu contraseña para confirmar.",
+      "withdrawHealthDataButton": "Retirar consentimiento",
       "deleteAccount": "Eliminar mi cuenta",
       "deleteAccountConfirm": "Esta acción no se puede deshacer. Se eliminarán tu cuenta, tu diario, tus citas y tus fotos. Ingresá tu contraseña para confirmar.",
       "deleteAccountPasswordPlaceholder": "Tu contraseña",
