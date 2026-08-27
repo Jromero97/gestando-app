@@ -36,10 +36,6 @@ export default async function PrivacyPolicyPage() {
       </h1>
       <p className="mt-2 text-sm text-muted">{t("lastUpdated")}</p>
 
-      <div className="mt-6 rounded-2xl border border-primary/30 bg-rose px-5 py-4 text-sm text-primary-dark">
-        {t("draftNotice")}
-      </div>
-
       <p className="mt-8 text-lg text-muted">{t("intro")}</p>
 
       <div className="mt-6 rounded-2xl bg-iceblue px-5 py-4 text-sm text-iceblue-text">

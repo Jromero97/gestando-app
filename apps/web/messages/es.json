@@ -52,12 +52,11 @@
   "privacy": {
     "title": "Política de Privacidad",
     "lastUpdated": "Versión del 27 de agosto de 2026",
-    "draftNotice": "Este es un borrador técnico redactado a partir de los datos que la aplicación efectivamente recolecta. Todavía no fue revisado por un abogado ni reemplaza asesoría legal.",
     "backLink": "Volver al inicio",
     "intro": "GestandoApp (\"nosotros\") es una aplicación para acompañar el seguimiento del embarazo. Esta política explica qué datos recolectamos, para qué los usamos, con quién los compartimos y qué derechos tenés sobre ellos.",
     "applicableLaw": {
       "heading": "Marco legal aplicable",
-      "body": "Esta política está redactada para cumplir con el Reglamento General de Protección de Datos de la Unión Europea (RGPD), aplicable si usás la app desde un país de la UE, y con la Ley N.° 787, Ley de Protección de Datos Personales de Nicaragua, país donde está radicado el responsable del tratamiento. [Verificar con asesoría legal en Nicaragua: no hay suficiente documentación pública actualizada sobre la aplicación práctica de esta ley como para redactar esta sección con total certeza.] Como la aplicación también está disponible en Estados Unidos a través de Google Play, la sección 9 de esta política incorpora además las divulgaciones adicionales que exige la My Health My Data Act del estado de Washington para datos de salud del consumidor."
+      "body": "Esta política está redactada para cumplir con el Reglamento General de Protección de Datos de la Unión Europea (RGPD), aplicable si usás la app desde un país de la UE, y con la Ley N.° 787, Ley de Protección de Datos Personales de Nicaragua, país donde está radicado el responsable del tratamiento. Como la aplicación también está disponible en Estados Unidos a través de Google Play, la sección 9 de esta política incorpora además las divulgaciones adicionales que exige la My Health My Data Act del estado de Washington para datos de salud del consumidor."
     },
     "controller": {
       "heading": "1. Responsable del tratamiento",

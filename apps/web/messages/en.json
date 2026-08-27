@@ -52,12 +52,11 @@
   "privacy": {
     "title": "Privacy Policy",
     "lastUpdated": "Version dated August 27, 2026",
-    "draftNotice": "This is a technical draft written from the data the app actually collects. It has not been reviewed by a lawyer and is not legal advice.",
     "backLink": "Back to home",
     "intro": "GestandoApp (\"we\") is an app for tracking pregnancy. This policy explains what data we collect, what we use it for, who we share it with, and what rights you have over it.",
     "applicableLaw": {
       "heading": "Applicable law",
-      "body": "This policy is written to align with the EU General Data Protection Regulation (GDPR), which applies if you use the app from an EU country, and with Law No. 787, Nicaragua's Personal Data Protection Law, the country where the data controller is based. [To verify with legal counsel in Nicaragua: there isn't enough up-to-date public documentation on how this law is applied in practice to write this section with full confidence.] Since the app is also available in the United States through Google Play, section 9 of this policy adds the further disclosures required by Washington State's My Health My Data Act for consumer health data."
+      "body": "This policy is written to align with the EU General Data Protection Regulation (GDPR), which applies if you use the app from an EU country, and with Law No. 787, Nicaragua's Personal Data Protection Law, the country where the data controller is based. Since the app is also available in the United States through Google Play, section 9 of this policy adds the further disclosures required by Washington State's My Health My Data Act for consumer health data."
     },
     "controller": {
       "heading": "1. Data controller",
