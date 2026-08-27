@@ -111,7 +111,10 @@
         "Presentar una reclamación ante la autoridad de protección de datos de tu país"
       ],
       "note": "Estos derechos corresponden a los reconocidos por el RGPD para usuarias en la Unión Europea, y a los derechos de acceso, rectificación, cancelación y oposición de la Ley N.° 787 de Nicaragua.",
-      "how": "Podés eliminar tu cuenta vos misma en cualquier momento desde Perfil → Zona de peligro dentro de la app, o ejercer cualquiera de estos derechos escribiéndonos a contact@jromeroc.dev."
+      "how": "Podés eliminar tu cuenta vos misma en cualquier momento desde Perfil → Zona de peligro dentro de la app, o ejercer cualquiera de estos derechos escribiéndonos a contact@jromeroc.dev.",
+      "deleteAccountHeading": "Cómo eliminar tu cuenta de GestandoApp",
+      "deleteAccountSteps": "Si tenés la app instalada: abrí GestandoApp → Perfil → Zona de peligro → \"Eliminar mi cuenta\", e ingresá tu contraseña para confirmar. Si no tenés acceso a la app o preferís pedirlo por otro medio, escribinos a contact@jromeroc.dev indicando el email de tu cuenta y que querés eliminarla — la eliminamos nosotros dentro de un plazo razonable.",
+      "deleteAccountData": "Al eliminar tu cuenta se borran: tu perfil (nombre, talla, peso), tu perfil de embarazo, tus citas y exámenes, tu diario (notas, fotos y audios) y tus fotos de progreso. Esto ocurre dentro de un plazo razonable después de la solicitud, salvo que la ley nos obligue a conservar cierta información por más tiempo (ver \"Cuánto tiempo guardamos tus datos\" arriba)."
     },
     "security": {
       "heading": "7. Seguridad",

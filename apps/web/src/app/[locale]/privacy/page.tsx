@@ -104,6 +104,12 @@ export default async function PrivacyPolicyPage() {
         </ul>
         <p className="mt-4 text-sm text-muted italic">{t("rights.note")}</p>
         <p className="mt-4 text-muted">{t("rights.how")}</p>
+
+        <div id="delete-account" className="mt-6 scroll-mt-24 rounded-2xl bg-rose px-5 py-4">
+          <h3 className="font-extrabold text-ink">{t("rights.deleteAccountHeading")}</h3>
+          <p className="mt-2 text-sm text-primary-dark">{t("rights.deleteAccountSteps")}</p>
+          <p className="mt-2 text-sm text-primary-dark">{t("rights.deleteAccountData")}</p>
+        </div>
       </section>
 
       <section className="mt-10">

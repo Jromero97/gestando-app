@@ -111,7 +111,10 @@
         "Lodge a complaint with your country's data protection authority"
       ],
       "note": "These rights match those granted by the GDPR to users in the European Union, and the access, rectification, cancellation, and objection rights under Nicaragua's Law No. 787.",
-      "how": "You can delete your own account at any time from Profile → Danger zone in the app, or exercise any of these rights by writing to us at contact@jromeroc.dev."
+      "how": "You can delete your own account at any time from Profile → Danger zone in the app, or exercise any of these rights by writing to us at contact@jromeroc.dev.",
+      "deleteAccountHeading": "How to delete your GestandoApp account",
+      "deleteAccountSteps": "If you have the app installed: open GestandoApp → Profile → Danger zone → \"Delete my account\", and enter your password to confirm. If you don't have access to the app, or would rather request it another way, email us at contact@jromeroc.dev with your account's email address and a request to delete it — we'll delete it ourselves within a reasonable time.",
+      "deleteAccountData": "Deleting your account erases: your profile (name, height, weight), your pregnancy profile, your appointments and exams, your journal (notes, photos, and voice recordings), and your progress photos. This happens within a reasonable time after the request, unless the law requires us to keep some information longer (see \"How long we keep your data\" above)."
     },
     "security": {
       "heading": "7. Security",
