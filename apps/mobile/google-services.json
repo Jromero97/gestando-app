@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "804505885811",
+    "project_id": "gestandoapp",
+    "storage_bucket": "gestandoapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:804505885811:android:73d300f67ad8acacc9de06",
+        "android_client_info": {
+          "package_name": "com.gestando.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9rKxgO2zzECkp5Du4-JTAjAMby84Fs04"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

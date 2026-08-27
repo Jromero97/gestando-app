@@ -22,4 +22,3 @@ expo-env.d.ts
 
 # typescript
 *.tsbuildinfo
-google-services.json
