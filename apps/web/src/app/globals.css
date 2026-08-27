@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+:root {
+  --color-background: #fbf0ef;
+  --color-surface: #ffffff;
+  --color-ink: #2b2a33;
+  /* Darkened from #9c98a6 / #c96a80 - the originals failed WCAG AA contrast
+     (2.2-2.8:1) against this site's light backgrounds. Matches the mobile app's fix. */
+  --color-muted: #615c69;
+  --color-primary: #e28a96;
+  --color-primary-dark: #9c4457;
+  --color-rose: #f7dfe2;
+  --color-lavender: #e3def6;
+  --color-lavender-text: #5b5470;
+  --color-iceblue: #dce7f5;
+  --color-iceblue-text: #3a5a80;
+}
+
+@theme inline {
+  --color-background: var(--color-background);
+  --color-surface: var(--color-surface);
+  --color-ink: var(--color-ink);
+  --color-muted: var(--color-muted);
+  --color-primary: var(--color-primary);
+  --color-primary-dark: var(--color-primary-dark);
+  --color-rose: var(--color-rose);
+  --color-lavender: var(--color-lavender);
+  --color-lavender-text: var(--color-lavender-text);
+  --color-iceblue: var(--color-iceblue);
+  --color-iceblue-text: var(--color-iceblue-text);
+  --radius-card: 28px;
+  --font-sans: var(--font-nunito);
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-ink);
+}

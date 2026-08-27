@@ -1,0 +1,258 @@
+// GestandoApp - Prisma Schema
+// Prisma ORM v7 (TypeScript-based runtime, no Rust engine)
+// Docs: https://www.prisma.io/docs/orm/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum ExamCategory {
+  ULTRASOUND
+  LAB
+  GENERAL
+}
+
+enum AppointmentStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum DiaryMood {
+  GREAT
+  GOOD
+  OKAY
+  TIRED
+  BAD
+}
+
+enum PregnancyCount {
+  ONE
+  TWINS
+  MORE
+}
+
+model User {
+  id                   String  @id @default(uuid())
+  email                String  @unique
+  passwordHash         String
+  role                 Role    @default(USER)
+  firstName            String?
+  lastName             String?
+  heightCm             Float?
+  prePregnancyWeightKg Float?
+  /// Drives which language push notification copy is sent in - kept in sync
+  /// with the app's i18n language switch (see ProfileScreen).
+  preferredLocale      String  @default("es")
+
+  /// Consent timestamp/version for the privacy policy in effect at registration (GDPR
+  /// Art. 7(1) requires the controller to be able to demonstrate consent was given).
+  /// Null only for accounts created before consent tracking existed.
+  privacyPolicyAcceptedAt DateTime?
+  privacyPolicyVersion    String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  pregnancyProfile PregnancyProfile?
+  appointments     Appointment[]
+  exams            Exam[]
+  milestonePhotos  MilestonePhoto[]
+  diaryEntries     DiaryEntry[]
+  pushTokens       PushToken[]
+
+  @@map("users")
+}
+
+/// 1:1 pregnancy profile for a User. Current week/trimester are derived
+/// at runtime from lastMenstrualPeriod/dueDate (see PregnancyService),
+/// not persisted so they never go stale as time passes.
+model PregnancyProfile {
+  id                  String    @id @default(uuid())
+  userId              String    @unique
+  lastMenstrualPeriod DateTime?
+  dueDate             DateTime
+  babyName            String?
+  notes               String?
+
+  isFirstPregnancy Boolean?
+  babyCount        PregnancyCount?
+  /// Codes: ANEMIA, GESTATIONAL_DIABETES, HYPERTENSION, THYROID, HIGH_RISK
+  conditions       String[]        @default([])
+
+  primaryDoctorName String?
+  primaryClinicName String?
+
+  /// Despite the name, this covers reminders for both Appointments and Exams
+  /// (they share one "medical schedule reminders" toggle - see
+  /// ReminderSchedulerService) rather than having a separate flag per entity.
+  reminderAppointments  Boolean @default(true)
+  reminderWeighIn       Boolean @default(true)
+  reminderDiaryNote     Boolean @default(false)
+  /// "HH:mm" local time, only meaningful when reminderDiaryNote is true
+  reminderDiaryNoteTime String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("pregnancy_profiles")
+}
+
+model Appointment {
+  id         String            @id @default(uuid())
+  userId     String
+  title      String
+  date       DateTime
+  status     AppointmentStatus @default(PENDING)
+  confirmed  Boolean           @default(false)
+  doctorName String?
+  location   String?
+  notes      String?
+
+  /// Vitals recorded at the appointment, shown in the day view's "Resultados" card.
+  bloodPressure        String?
+  uterineHeightCm      Float?
+  fetalHeartRateBpm    Int?
+  estimatedBabyWeightG Int?
+  resultsFileUrl       String?
+  resultsFileName      String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user             User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  notificationLogs NotificationLog[]
+
+  @@index([userId, date])
+  @@map("appointments")
+}
+
+model Exam {
+  id        String       @id @default(uuid())
+  userId    String
+  title     String
+  date      DateTime
+  category  ExamCategory
+  fileUrl   String?
+  notes     String?
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+
+  user             User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  notificationLogs NotificationLog[]
+
+  @@index([userId, date])
+  @@map("exams")
+}
+
+model PushToken {
+  id        String   @id @default(uuid())
+  userId    String
+  token     String   @unique
+  platform  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("push_tokens")
+}
+
+/// Idempotency log for ReminderSchedulerService: one row per (appointment or
+/// exam, offsetMinutes) reminder actually sent, so an hourly cron re-run or
+/// overlap can never double-notify the same item for the same offset.
+/// Exactly one of appointmentId/examId is set per row.
+model NotificationLog {
+  id            String   @id @default(uuid())
+  appointmentId String?
+  examId        String?
+  offsetMinutes Int
+  sentAt        DateTime @default(now())
+
+  appointment Appointment? @relation(fields: [appointmentId], references: [id], onDelete: Cascade)
+  exam        Exam?        @relation(fields: [examId], references: [id], onDelete: Cascade)
+
+  @@unique([appointmentId, offsetMinutes])
+  @@unique([examId, offsetMinutes])
+  @@map("notification_logs")
+}
+
+model MilestonePhoto {
+  id                 String   @id @default(uuid())
+  userId             String
+  weekNumber         Int
+  photoUrl           String
+  weight             Float?
+  bellyCircumference Float?
+  notes              String?
+  date               DateTime @default(now())
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, weekNumber])
+  @@map("milestone_photos")
+}
+
+/// Journal entry for a calendar day. `date` is always normalized to
+/// UTC midnight (see DiaryService) so there can only be one entry per day.
+model DiaryEntry {
+  id       String     @id @default(uuid())
+  userId   String
+  date     DateTime
+  note     String?
+  // [DEPRECATED 2026-08-22 - replaced by the `photos` relation (multiple photos per day with captions) - j.romeroc97@gmail.com]
+  photoUrl String?
+  mood     DiaryMood?
+  symptoms String[]   @default([])
+
+  weightKg           Float?
+  babyMovementsCount Int?
+  sleepHours         Float?
+  audioUrl           String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user   User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  photos DiaryPhoto[]
+
+  @@unique([userId, date])
+  @@map("diary_entries")
+}
+
+/// One of possibly several photos attached to a DiaryEntry, each with its own caption.
+model DiaryPhoto {
+  id           String   @id @default(uuid())
+  diaryEntryId String
+  photoUrl     String
+  caption      String?
+  createdAt    DateTime @default(now())
+
+  diaryEntry DiaryEntry @relation(fields: [diaryEntryId], references: [id], onDelete: Cascade)
+
+  @@map("diary_photos")
+}
+
+/// Email capture from the marketing landing page (apps/web), pre-launch.
+model WaitlistSignup {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+
+  @@map("waitlist_signups")
+}

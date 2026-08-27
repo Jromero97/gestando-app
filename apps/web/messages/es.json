@@ -1,0 +1,130 @@
+{
+  "metadata": {
+    "title": "GestandoApp — tu embarazo, semana a semana",
+    "description": "El diario de embarazo que acompaña cada semana: progreso, citas médicas y cómo te sentís, todo en un solo lugar. Anotate para el lanzamiento.",
+    "ogDescription": "El diario de embarazo que acompaña cada semana: progreso, citas médicas y cómo te sentís, todo en un solo lugar.",
+    "twitterDescription": "El diario de embarazo que acompaña cada semana: progreso, citas médicas y cómo te sentís."
+  },
+  "nav": {
+    "cta": "Anotarme"
+  },
+  "hero": {
+    "badge": "Próximamente en iOS y Android",
+    "title": "Tu embarazo, semana a semana, en un solo lugar",
+    "subtitle": "GestandoApp te acompaña con tu progreso, tus citas médicas y un diario para guardar cómo te sentís en cada etapa.",
+    "imageAlt": "Pantalla principal de GestandoApp mostrando la semana de embarazo, próxima cita y progreso",
+    "formNote": "Sin spam. Solo te escribimos cuando esté lista para descargar."
+  },
+  "features": {
+    "heading": "Todo lo que necesitás para acompañar tu embarazo",
+    "progress": {
+      "title": "Mirá tu progreso, semana a semana",
+      "body": "El tamaño del bebé, cuánto falta para la fecha probable de parto y cómo va cambiando tu cuerpo, todo junto en un solo lugar."
+    },
+    "agenda": {
+      "title": "Tu agenda médica, sin sorpresas",
+      "body": "Controles, ecografías y exámenes con fecha, hora y clínica. Confirmá cada cita y recibí un recordatorio antes de que llegue el día."
+    },
+    "diary": {
+      "title": "Un diario para cada día",
+      "body": "Anotá cómo te sentiste, tus síntomas y fotos del proceso. Con el tiempo, se convierte en el registro más lindo de tu embarazo."
+    }
+  },
+  "cta": {
+    "heading": "Sumate a la lista de espera",
+    "subtitle": "Estamos afinando los últimos detalles. Dejanos tu correo y sé de las primeras en usarla."
+  },
+  "footer": {
+    "copyright": "© {year} GestandoApp. Hecho con cariño para el embarazo."
+  },
+  "waitlist": {
+    "emailLabel": "Tu correo electrónico",
+    "placeholder": "tu@correo.com",
+    "submit": "Anotarme",
+    "submitting": "Enviando…",
+    "success": "¡Listo! Te avisamos apenas GestandoApp esté disponible. 💌",
+    "error": "No pudimos anotarte, probá de nuevo en un momento."
+  },
+  "language": {
+    "es": "Español",
+    "en": "English"
+  },
+  "privacy": {
+    "title": "Política de Privacidad",
+    "lastUpdated": "Versión del 27 de agosto de 2026",
+    "draftNotice": "Este es un borrador técnico redactado a partir de los datos que la aplicación efectivamente recolecta. Todavía no fue revisado por un abogado ni reemplaza asesoría legal.",
+    "backLink": "Volver al inicio",
+    "intro": "GestandoApp (\"nosotros\") es una aplicación para acompañar el seguimiento del embarazo. Esta política explica qué datos recolectamos, para qué los usamos, con quién los compartimos y qué derechos tenés sobre ellos.",
+    "applicableLaw": {
+      "heading": "Marco legal aplicable",
+      "body": "Esta política está redactada para cumplir con el Reglamento General de Protección de Datos de la Unión Europea (RGPD), aplicable si usás la app desde un país de la UE, y con la Ley N.° 787, Ley de Protección de Datos Personales de Nicaragua, país donde está radicado el responsable del tratamiento. [Verificar con asesoría legal en Nicaragua: no hay suficiente documentación pública actualizada sobre la aplicación práctica de esta ley como para redactar esta sección con total certeza.]"
+    },
+    "controller": {
+      "heading": "1. Responsable del tratamiento",
+      "body": [
+        "GestandoApp es operada por Juan Ramón Junior Romero Cano, como persona natural, con domicilio en Managua, Nicaragua, quien es el responsable del tratamiento de tus datos personales.",
+        "Para cualquier consulta sobre privacidad podés escribirnos a contact@jromeroc.dev."
+      ]
+    },
+    "dataCollected": {
+      "heading": "2. Qué datos recolectamos",
+      "intro": "Recolectamos los datos que ingresás directamente en la aplicación:",
+      "categories": [
+        { "title": "Cuenta", "items": ["Email y contraseña (la contraseña se guarda cifrada, nunca en texto plano)", "Nombre, apellido, talla y peso pregestacional"] },
+        { "title": "Embarazo", "items": ["Fecha de última menstruación, fecha probable de parto, nombre del bebé, notas, condiciones médicas (por ejemplo anemia, diabetes gestacional, hipertensión), datos de tu médico y clínica"] },
+        { "title": "Citas médicas", "items": ["Fecha, lugar y profesional de cada cita", "Signos vitales que cargues: presión arterial, altura uterina, frecuencia cardíaca fetal, peso estimado del bebé", "Informes o resultados que subas"] },
+        { "title": "Diario", "items": ["Estado de ánimo, síntomas, peso, movimientos del bebé, horas de sueño", "Fotos y notas de audio que agregues", "Texto libre que escribas"] },
+        { "title": "Progreso", "items": ["Fotos de evolución del embarazo, peso y circunferencia abdominal por semana"] }
+      ],
+      "note": "Estos datos son datos de salud. Los tratamos como una categoría especial de datos y solo los procesamos con tu consentimiento explícito."
+    },
+    "purpose": {
+      "heading": "3. Para qué usamos tus datos",
+      "items": [
+        "Para brindarte el servicio: mostrar tu progreso, tus citas y tu diario",
+        "Para enviarte recordatorios que vos mismo configurás (citas, control de peso, notas del diario)",
+        "Para dar soporte cuando nos contactás",
+        "Para mejorar la aplicación de forma agregada y anónima"
+      ],
+      "legalBasis": "La base legal para procesar tus datos de salud es tu consentimiento explícito, otorgado al crear tu cuenta. Podés retirarlo en cualquier momento eliminando tu cuenta."
+    },
+    "sharing": {
+      "heading": "4. Con quién compartimos tus datos",
+      "body": [
+        "No vendemos tus datos ni los usamos con fines publicitarios.",
+        "Usamos Supabase (base de datos y almacenamiento de archivos) como encargado del tratamiento para operar la aplicación. Tus datos se alojan en la región Este de EE. UU. (Ohio). Supabase incorpora las Cláusulas Contractuales Tipo de la UE en su Acuerdo de Encargado de Tratamiento para amparar esta transferencia internacional de datos si sos usuaria en la Unión Europea. [Confirmar que el Acuerdo de Encargado de Tratamiento con Supabase esté efectivamente aceptado en la cuenta del proyecto.]",
+        "Podríamos compartir datos si la ley nos obliga a hacerlo."
+      ]
+    },
+    "retention": {
+      "heading": "5. Cuánto tiempo guardamos tus datos",
+      "body": "Guardamos tus datos mientras tu cuenta esté activa. Si eliminás tu cuenta, eliminamos tus datos personales dentro de un plazo razonable, salvo que la ley nos obligue a conservar alguna información por más tiempo."
+    },
+    "rights": {
+      "heading": "6. Tus derechos",
+      "intro": "Sin importar desde qué país uses la app, tenés derecho a:",
+      "items": [
+        "Acceder a los datos que tenemos sobre vos",
+        "Corregir datos incorrectos o incompletos (rectificación)",
+        "Pedir que eliminemos tu cuenta y tus datos (\"derecho al olvido\" / cancelación)",
+        "Pedir una copia de tus datos en un formato portable",
+        "Oponerte al tratamiento o retirar tu consentimiento en cualquier momento",
+        "Presentar una reclamación ante la autoridad de protección de datos de tu país"
+      ],
+      "note": "Estos derechos corresponden a los reconocidos por el RGPD para usuarias en la Unión Europea, y a los derechos de acceso, rectificación, cancelación y oposición de la Ley N.° 787 de Nicaragua.",
+      "how": "Podés eliminar tu cuenta vos misma en cualquier momento desde Perfil → Zona de peligro dentro de la app, o ejercer cualquiera de estos derechos escribiéndonos a contact@jromeroc.dev."
+    },
+    "security": {
+      "heading": "7. Seguridad",
+      "body": "Aplicamos medidas técnicas razonables para proteger tus datos, como el cifrado de contraseñas y conexiones seguras (HTTPS). Ninguna aplicación es 100% segura, pero nos comprometemos a mejorar estas medidas de forma continua."
+    },
+    "children": {
+      "heading": "8. Menores de edad",
+      "body": "GestandoApp no está dirigida a menores de edad."
+    },
+    "changes": {
+      "heading": "9. Cambios a esta política",
+      "body": "Si hacemos cambios importantes a esta política, te lo vamos a notificar dentro de la aplicación antes de que entren en vigencia."
+    }
+  }
+}
