@@ -40,7 +40,10 @@ async function bootstrap() {
     }),
   );
 
-  app.setGlobalPrefix('api');
+  // Health checks live at the bare /health path, outside the /api prefix -
+  // deployment tooling (Dokploy, load balancers) shouldn't need to know
+  // about API versioning/prefixing just to probe liveness.
+  app.setGlobalPrefix('api', { exclude: ['health'] });
 
   await app.listen(process.env.PORT ?? 3000);
 }

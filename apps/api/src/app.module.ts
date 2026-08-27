@@ -16,6 +16,7 @@ import { StorageModule } from './storage/storage.module';
 import { DiaryModule } from './diary/diary.module';
 import { WaitlistModule } from './waitlist/waitlist.module';
 import { NotificationsModule } from './notifications/notifications.module';
+import { HealthModule } from './health/health.module';
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { NotificationsModule } from './notifications/notifications.module';
     DiaryModule,
     WaitlistModule,
     NotificationsModule,
+    HealthModule,
   ],
   providers: [{ provide: APP_GUARD, useClass: ThrottlerGuard }],
 })
